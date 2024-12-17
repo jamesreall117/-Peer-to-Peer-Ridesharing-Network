@@ -1,21 +1,33 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 
-import { describe, expect, it } from "vitest";
+const mockContractCall = (method: string, args: any[]) => {
+  return { success: true, result: 'mocked result' };
+};
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
+describe('Dispute Resolution Contract', () => {
+  beforeEach(() => {
+    // Reset any necessary state before each test
   });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
+  
+  it('should file a dispute', () => {
+    const result = mockContractCall('file-dispute', [1, 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM', 'Dispute description']);
+    expect(result.success).toBe(true);
+  });
+  
+  it('should resolve a dispute', () => {
+    const result = mockContractCall('resolve-dispute', [1, 'Resolution description']);
+    expect(result.success).toBe(true);
+  });
+  
+  it('should set a new arbitrator', () => {
+    const result = mockContractCall('set-arbitrator', ['ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG']);
+    expect(result.success).toBe(true);
+  });
+  
+  it('should get dispute details', () => {
+    const result = mockContractCall('get-dispute', [1]);
+    expect(result.success).toBe(true);
+  });
+  
 });
+

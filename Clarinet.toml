@@ -10,11 +10,6 @@ path = 'contracts/reputation-system.clar'
 clarity_version = 2
 epoch = 2.5
 
-[contracts.reputation-system_]
-path = 'contracts/reputation-system_.clar'
-clarity_version = 2
-epoch = 2.5
-
 [contracts.ride-management]
 path = 'contracts/ride-management.clar'
 clarity_version = 2
